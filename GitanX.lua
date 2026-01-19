@@ -1,13 +1,13 @@
 --[[
-    ██████╗ ██╗████████╗ █████╗ ███╗   ██╗██╗  ██╗
-    ██╔════╝ ██║╚══██╔══╝██╔══██╗████╗  ██║╚██╗██╔╝
-    ██║  ███╗██║   ██║   ███████║██╔██╗ ██║ ╚███╔╝ 
-    ██║   ██║██║   ██║   ██╔══██║██║╚██╗██║ ██╔██╗ 
-    ╚██████╔╝██║   ██║   ██║  ██║██║ ╚████║██╔╝ ██╗
-     ╚═════╝ ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝
+    ██████╗ ██████╗ ████████╗ █████╗ ███╗   ██╗██╗  ██╗
+    ██╔════╝ ██║  ██║╚══██╔══╝██╔══██╗████╗  ██║╚██╗██╔╝
+    ██║  ███╗██║  ██║   ██║   ███████║██╔██╗ ██║ ╚███╔╝ 
+    ██║   ██║██║  ██║   ██║   ██╔══██║██║╚██╗██║ ██╔██╗ 
+    ╚██████╔╝██████╔╝   ██║   ██║  ██║██║ ╚████║██╔╝ ██╗
+     ╚═════╝ ╚═════╝    ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝
     
-    GitanX - Premium UI Library for Roblox
-    Version: 2.0.0
+    GitanX - Premium UI Library Enhanced
+    Version: 2.5.0
 ]]
 
 local GitanX = {}
@@ -76,11 +76,12 @@ local function MakeDraggable(frame, dragHandle)
     end)
 end
 
--- Enhanced Theme System with Gradients
+-- Enhanced Theme System with Rich Gradients
 local Themes = {
     Dark = {
         Primary = Color3.fromRGB(147, 51, 234),
         Secondary = Color3.fromRGB(168, 85, 247),
+        Tertiary = Color3.fromRGB(196, 135, 255),
         Background = Color3.fromRGB(10, 10, 15),
         Surface = Color3.fromRGB(20, 20, 30),
         SurfaceVariant = Color3.fromRGB(30, 30, 45),
@@ -96,6 +97,7 @@ local Themes = {
     Ocean = {
         Primary = Color3.fromRGB(6, 182, 212),
         Secondary = Color3.fromRGB(14, 165, 233),
+        Tertiary = Color3.fromRGB(56, 189, 248),
         Background = Color3.fromRGB(8, 15, 25),
         Surface = Color3.fromRGB(15, 25, 40),
         SurfaceVariant = Color3.fromRGB(25, 40, 60),
@@ -111,6 +113,7 @@ local Themes = {
     Sunset = {
         Primary = Color3.fromRGB(251, 146, 60),
         Secondary = Color3.fromRGB(249, 115, 22),
+        Tertiary = Color3.fromRGB(253, 186, 116),
         Background = Color3.fromRGB(20, 10, 25),
         Surface = Color3.fromRGB(40, 20, 35),
         SurfaceVariant = Color3.fromRGB(55, 30, 50),
@@ -126,6 +129,7 @@ local Themes = {
     Cyberpunk = {
         Primary = Color3.fromRGB(255, 0, 102),
         Secondary = Color3.fromRGB(0, 255, 255),
+        Tertiary = Color3.fromRGB(138, 43, 255),
         Background = Color3.fromRGB(5, 5, 15),
         Surface = Color3.fromRGB(15, 15, 30),
         SurfaceVariant = Color3.fromRGB(25, 25, 45),
@@ -138,6 +142,38 @@ local Themes = {
         Shadow = Color3.fromRGB(0, 0, 5),
         Glow = Color3.fromRGB(255, 0, 255),
     },
+    Emerald = {
+        Primary = Color3.fromRGB(16, 185, 129),
+        Secondary = Color3.fromRGB(52, 211, 153),
+        Tertiary = Color3.fromRGB(110, 231, 183),
+        Background = Color3.fromRGB(6, 20, 15),
+        Surface = Color3.fromRGB(15, 30, 25),
+        SurfaceVariant = Color3.fromRGB(25, 45, 35),
+        Text = Color3.fromRGB(236, 253, 245),
+        TextSecondary = Color3.fromRGB(167, 243, 208),
+        Success = Color3.fromRGB(34, 197, 94),
+        Warning = Color3.fromRGB(234, 179, 8),
+        Error = Color3.fromRGB(239, 68, 68),
+        Accent = Color3.fromRGB(20, 184, 166),
+        Shadow = Color3.fromRGB(0, 8, 5),
+        Glow = Color3.fromRGB(16, 185, 129),
+    },
+    Rose = {
+        Primary = Color3.fromRGB(244, 63, 94),
+        Secondary = Color3.fromRGB(251, 113, 133),
+        Tertiary = Color3.fromRGB(253, 164, 175),
+        Background = Color3.fromRGB(20, 8, 12),
+        Surface = Color3.fromRGB(35, 15, 22),
+        SurfaceVariant = Color3.fromRGB(50, 25, 35),
+        Text = Color3.fromRGB(255, 241, 242),
+        TextSecondary = Color3.fromRGB(252, 165, 165),
+        Success = Color3.fromRGB(34, 197, 94),
+        Warning = Color3.fromRGB(234, 179, 8),
+        Error = Color3.fromRGB(239, 68, 68),
+        Accent = Color3.fromRGB(236, 72, 153),
+        Shadow = Color3.fromRGB(8, 0, 3),
+        Glow = Color3.fromRGB(244, 63, 94),
+    },
 }
 
 -- Main Library
@@ -148,6 +184,7 @@ function GitanX:CreateWindow(config)
     local Theme = Themes[CurrentTheme]
     local LoadingEnabled = config.LoadingEnabled ~= false
     local MinimizeKey = config.MinimizeKey or Enum.KeyCode.RightControl
+    local ShowHomePage = config.ShowHomePage ~= false
     
     local Window = {}
     Window.Tabs = {}
@@ -164,7 +201,7 @@ function GitanX:CreateWindow(config)
         ResetOnSpawn = false,
     })
     
-    -- Main Frame with enhanced visuals
+    -- Main Frame
     local MainFrame = CreateInstance("Frame", {
         Name = "MainFrame",
         Size = UDim2.new(0, 0, 0, 0),
@@ -180,7 +217,7 @@ function GitanX:CreateWindow(config)
         Parent = MainFrame,
     })
     
-    -- Enhanced shadow with multiple layers
+    -- Enhanced shadow layers
     local Shadow1 = CreateInstance("ImageLabel", {
         Name = "Shadow1",
         Size = UDim2.new(1, 60, 1, 60),
@@ -188,7 +225,7 @@ function GitanX:CreateWindow(config)
         BackgroundTransparency = 1,
         Image = "rbxassetid://5028857084",
         ImageColor3 = Theme.Shadow,
-        ImageTransparency = 0.5,
+        ImageTransparency = 0.4,
         ScaleType = Enum.ScaleType.Slice,
         SliceCenter = Rect.new(24, 24, 276, 276),
         Parent = MainFrame,
@@ -202,14 +239,14 @@ function GitanX:CreateWindow(config)
         BackgroundTransparency = 1,
         Image = "rbxassetid://5028857084",
         ImageColor3 = Theme.Shadow,
-        ImageTransparency = 0.7,
+        ImageTransparency = 0.6,
         ScaleType = Enum.ScaleType.Slice,
         SliceCenter = Rect.new(24, 24, 276, 276),
         Parent = MainFrame,
         ZIndex = 0,
     })
     
-    -- Animated glow effect
+    -- Animated glow
     local Glow = CreateInstance("ImageLabel", {
         Name = "Glow",
         Size = UDim2.new(1, 50, 1, 50),
@@ -217,29 +254,28 @@ function GitanX:CreateWindow(config)
         BackgroundTransparency = 1,
         Image = "rbxassetid://5028857084",
         ImageColor3 = Theme.Glow,
-        ImageTransparency = 0.85,
+        ImageTransparency = 0.8,
         ScaleType = Enum.ScaleType.Slice,
         SliceCenter = Rect.new(24, 24, 276, 276),
         Parent = MainFrame,
         ZIndex = 0,
     })
     
-    -- Pulsing glow animation
     spawn(function()
         while MainFrame.Parent do
-            Tween(Glow, {ImageTransparency = 0.75}, 1.5, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut)
+            Tween(Glow, {ImageTransparency = 0.7}, 1.5, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut)
             wait(1.5)
-            Tween(Glow, {ImageTransparency = 0.9}, 1.5, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut)
+            Tween(Glow, {ImageTransparency = 0.85}, 1.5, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut)
             wait(1.5)
         end
     end)
     
-    -- Glass effect overlay
+    -- Glass effect
     local GlassEffect = CreateInstance("Frame", {
         Name = "GlassEffect",
         Size = UDim2.new(1, 0, 1, 0),
         BackgroundColor3 = Theme.Surface,
-        BackgroundTransparency = 0.4,
+        BackgroundTransparency = 0.3,
         BorderSizePixel = 0,
         Parent = MainFrame,
     })
@@ -249,7 +285,7 @@ function GitanX:CreateWindow(config)
         Parent = GlassEffect,
     })
     
-    -- Gradient overlay for depth
+    -- Gradient overlay
     local GradientOverlay = CreateInstance("Frame", {
         Name = "GradientOverlay",
         Size = UDim2.new(1, 0, 1, 0),
@@ -266,22 +302,22 @@ function GitanX:CreateWindow(config)
     CreateInstance("UIGradient", {
         Color = ColorSequence.new({
             ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),
-            ColorSequenceKeypoint.new(1, Color3.fromRGB(100, 100, 100)),
+            ColorSequenceKeypoint.new(1, Color3.fromRGB(80, 80, 80)),
         }),
         Transparency = NumberSequence.new({
-            NumberSequenceKeypoint.new(0, 0.95),
+            NumberSequenceKeypoint.new(0, 0.93),
             NumberSequenceKeypoint.new(1, 1),
         }),
         Rotation = 90,
         Parent = GradientOverlay,
     })
     
-    -- Enhanced TopBar
+    -- TopBar
     local TopBar = CreateInstance("Frame", {
         Name = "TopBar",
         Size = UDim2.new(1, 0, 0, 55),
         BackgroundColor3 = Theme.SurfaceVariant,
-        BackgroundTransparency = 0.3,
+        BackgroundTransparency = 0.2,
         BorderSizePixel = 0,
         Parent = MainFrame,
     })
@@ -291,21 +327,20 @@ function GitanX:CreateWindow(config)
         Parent = TopBar,
     })
     
-    -- TopBar gradient
     CreateInstance("UIGradient", {
         Color = ColorSequence.new({
             ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),
-            ColorSequenceKeypoint.new(1, Color3.fromRGB(150, 150, 150)),
+            ColorSequenceKeypoint.new(1, Color3.fromRGB(120, 120, 120)),
         }),
         Transparency = NumberSequence.new({
-            NumberSequenceKeypoint.new(0, 0.9),
-            NumberSequenceKeypoint.new(1, 0.95),
+            NumberSequenceKeypoint.new(0, 0.85),
+            NumberSequenceKeypoint.new(1, 0.92),
         }),
         Rotation = 90,
         Parent = TopBar,
     })
     
-    -- Logo/Icon
+    -- Logo with gradient
     local Logo = CreateInstance("Frame", {
         Name = "Logo",
         Size = UDim2.new(0, 35, 0, 35),
@@ -323,9 +358,10 @@ function GitanX:CreateWindow(config)
     CreateInstance("UIGradient", {
         Color = ColorSequence.new({
             ColorSequenceKeypoint.new(0, Theme.Primary),
-            ColorSequenceKeypoint.new(1, Theme.Secondary),
+            ColorSequenceKeypoint.new(0.5, Theme.Secondary),
+            ColorSequenceKeypoint.new(1, Theme.Tertiary),
         }),
-        Rotation = 45,
+        Rotation = 135,
         Parent = Logo,
     })
     
@@ -335,7 +371,7 @@ function GitanX:CreateWindow(config)
         BackgroundTransparency = 1,
         Image = "rbxassetid://5028857084",
         ImageColor3 = Theme.Primary,
-        ImageTransparency = 0.7,
+        ImageTransparency = 0.6,
         ScaleType = Enum.ScaleType.Slice,
         SliceCenter = Rect.new(24, 24, 276, 276),
         Parent = Logo,
@@ -355,7 +391,7 @@ function GitanX:CreateWindow(config)
         Parent = TopBar,
     })
     
-    -- Animated accent line with gradient
+    -- Animated accent line with rich gradient
     local AccentLine = CreateInstance("Frame", {
         Name = "AccentLine",
         Size = UDim2.new(1, 0, 0, 3),
@@ -365,32 +401,32 @@ function GitanX:CreateWindow(config)
         Parent = TopBar,
     })
     
-    CreateInstance("UIGradient", {
+    local AccentGradient = CreateInstance("UIGradient", {
         Color = ColorSequence.new({
             ColorSequenceKeypoint.new(0, Theme.Primary),
-            ColorSequenceKeypoint.new(0.5, Theme.Accent),
-            ColorSequenceKeypoint.new(1, Theme.Secondary),
+            ColorSequenceKeypoint.new(0.3, Theme.Secondary),
+            ColorSequenceKeypoint.new(0.6, Theme.Tertiary),
+            ColorSequenceKeypoint.new(1, Theme.Accent),
         }),
         Parent = AccentLine,
     })
     
-    -- Animated gradient rotation
     spawn(function()
         local rotation = 0
         while AccentLine.Parent do
-            rotation = (rotation + 1) % 360
-            AccentLine.UIGradient.Rotation = rotation
+            rotation = (rotation + 2) % 360
+            AccentGradient.Rotation = rotation
             wait(0.05)
         end
     end)
     
-    -- Enhanced Close Button
+    -- Close Button
     local CloseButton = CreateInstance("TextButton", {
         Name = "CloseButton",
         Size = UDim2.new(0, 38, 0, 38),
         Position = UDim2.new(1, -50, 0, 8.5),
         BackgroundColor3 = Theme.Error,
-        BackgroundTransparency = 0.85,
+        BackgroundTransparency = 0.8,
         Text = "✕",
         TextColor3 = Color3.fromRGB(255, 255, 255),
         TextSize = 18,
@@ -406,35 +442,35 @@ function GitanX:CreateWindow(config)
     
     CreateInstance("UIStroke", {
         Color = Theme.Error,
-        Transparency = 0.7,
-        Thickness = 1.5,
+        Transparency = 0.6,
+        Thickness = 2,
         Parent = CloseButton,
     })
     
     CloseButton.MouseButton1Click:Connect(function()
-        Tween(CloseButton, {Rotation = 90, BackgroundTransparency = 0.3}, 0.2)
+        Tween(CloseButton, {Rotation = 90, BackgroundTransparency = 0.2}, 0.2)
         Tween(MainFrame, {Size = UDim2.new(0, 0, 0, 0)}, 0.4, Enum.EasingStyle.Back, Enum.EasingDirection.In)
         wait(0.4)
         ScreenGui:Destroy()
     end)
     
     CloseButton.MouseEnter:Connect(function()
-        Tween(CloseButton, {BackgroundTransparency = 0.5, Size = UDim2.new(0, 42, 0, 42)}, 0.2)
-        Tween(CloseButton.UIStroke, {Transparency = 0.3}, 0.2)
+        Tween(CloseButton, {BackgroundTransparency = 0.4, Size = UDim2.new(0, 42, 0, 42)}, 0.2)
+        Tween(CloseButton.UIStroke, {Transparency = 0.2}, 0.2)
     end)
     
     CloseButton.MouseLeave:Connect(function()
-        Tween(CloseButton, {BackgroundTransparency = 0.85, Size = UDim2.new(0, 38, 0, 38)}, 0.2)
-        Tween(CloseButton.UIStroke, {Transparency = 0.7}, 0.2)
+        Tween(CloseButton, {BackgroundTransparency = 0.8, Size = UDim2.new(0, 38, 0, 38)}, 0.2)
+        Tween(CloseButton.UIStroke, {Transparency = 0.6}, 0.2)
     end)
     
-    -- Enhanced Minimize Button
+    -- Minimize Button
     local MinimizeButton = CreateInstance("TextButton", {
         Name = "MinimizeButton",
         Size = UDim2.new(0, 38, 0, 38),
         Position = UDim2.new(1, -100, 0, 8.5),
         BackgroundColor3 = Theme.Warning,
-        BackgroundTransparency = 0.85,
+        BackgroundTransparency = 0.8,
         Text = "−",
         TextColor3 = Color3.fromRGB(255, 255, 255),
         TextSize = 22,
@@ -450,8 +486,8 @@ function GitanX:CreateWindow(config)
     
     CreateInstance("UIStroke", {
         Color = Theme.Warning,
-        Transparency = 0.7,
-        Thickness = 1.5,
+        Transparency = 0.6,
+        Thickness = 2,
         Parent = MinimizeButton,
     })
     
@@ -460,16 +496,16 @@ function GitanX:CreateWindow(config)
     end)
     
     MinimizeButton.MouseEnter:Connect(function()
-        Tween(MinimizeButton, {BackgroundTransparency = 0.5, Size = UDim2.new(0, 42, 0, 42)}, 0.2)
-        Tween(MinimizeButton.UIStroke, {Transparency = 0.3}, 0.2)
+        Tween(MinimizeButton, {BackgroundTransparency = 0.4, Size = UDim2.new(0, 42, 0, 42)}, 0.2)
+        Tween(MinimizeButton.UIStroke, {Transparency = 0.2}, 0.2)
     end)
     
     MinimizeButton.MouseLeave:Connect(function()
-        Tween(MinimizeButton, {BackgroundTransparency = 0.85, Size = UDim2.new(0, 38, 0, 38)}, 0.2)
-        Tween(MinimizeButton.UIStroke, {Transparency = 0.7}, 0.2)
+        Tween(MinimizeButton, {BackgroundTransparency = 0.8, Size = UDim2.new(0, 38, 0, 38)}, 0.2)
+        Tween(MinimizeButton.UIStroke, {Transparency = 0.6}, 0.2)
     end)
     
-    -- Enhanced Tabs Container
+    -- Tabs Container
     local TabsContainer = CreateInstance("Frame", {
         Name = "TabsContainer",
         Size = UDim2.new(0, 160, 1, -70),
@@ -491,6 +527,88 @@ function GitanX:CreateWindow(config)
         BackgroundTransparency = 1,
         ClipsDescendants = true,
         Parent = MainFrame,
+    })
+    
+    -- Home Page
+    local HomePage = CreateInstance("Frame", {
+        Name = "HomePage",
+        Size = UDim2.new(1, 0, 1, 0),
+        BackgroundTransparency = 1,
+        Visible = ShowHomePage,
+        Parent = ContentContainer,
+    })
+    
+    local WelcomeFrame = CreateInstance("Frame", {
+        Size = UDim2.new(1, -20, 0, 200),
+        Position = UDim2.new(0, 10, 0, 20),
+        BackgroundColor3 = Theme.Surface,
+        BackgroundTransparency = 0.3,
+        BorderSizePixel = 0,
+        Parent = HomePage,
+    })
+    
+    CreateInstance("UICorner", {
+        CornerRadius = UDim.new(0, 14),
+        Parent = WelcomeFrame,
+    })
+    
+    CreateInstance("UIGradient", {
+        Color = ColorSequence.new({
+            ColorSequenceKeypoint.new(0, Theme.Primary),
+            ColorSequenceKeypoint.new(0.5, Theme.Secondary),
+            ColorSequenceKeypoint.new(1, Theme.Tertiary),
+        }),
+        Transparency = NumberSequence.new({
+            NumberSequenceKeypoint.new(0, 0.85),
+            NumberSequenceKeypoint.new(1, 0.95),
+        }),
+        Rotation = 45,
+        Parent = WelcomeFrame,
+    })
+    
+    CreateInstance("UIStroke", {
+        Color = Theme.Primary,
+        Transparency = 0.5,
+        Thickness = 2,
+        Parent = WelcomeFrame,
+    })
+    
+    local WelcomeTitle = CreateInstance("TextLabel", {
+        Size = UDim2.new(1, -40, 0, 50),
+        Position = UDim2.new(0, 20, 0, 25),
+        BackgroundTransparency = 1,
+        Text = "Bienvenue sur " .. WindowName,
+        TextColor3 = Theme.Text,
+        TextSize = 28,
+        Font = Enum.Font.GothamBold,
+        TextXAlignment = Enum.TextXAlignment.Left,
+        Parent = WelcomeFrame,
+    })
+    
+    local WelcomeSubtitle = CreateInstance("TextLabel", {
+        Size = UDim2.new(1, -40, 0, 80),
+        Position = UDim2.new(0, 20, 0, 80),
+        BackgroundTransparency = 1,
+        Text = "Interface premium pour Roblox\nSélectionnez un onglet pour commencer",
+        TextColor3 = Theme.TextSecondary,
+        TextSize = 16,
+        Font = Enum.Font.Gotham,
+        TextXAlignment = Enum.TextXAlignment.Left,
+        TextYAlignment = Enum.TextYAlignment.Top,
+        TextWrapped = true,
+        Parent = WelcomeFrame,
+    })
+    
+    local ThemeLabel = CreateInstance("TextLabel", {
+        Size = UDim2.new(1, -40, 0, 30),
+        Position = UDim2.new(0, 20, 0, 165),
+        BackgroundTransparency = 1,
+        Text = "Thème actuel: " .. CurrentTheme,
+        TextColor3 = Theme.Primary,
+        TextSize = 14,
+        Font = Enum.Font.GothamSemibold,
+        TextXAlignment = Enum.TextXAlignment.Left,
+        Parent = WelcomeFrame,
     })
     
     MakeDraggable(MainFrame, TopBar)
@@ -522,17 +640,25 @@ function GitanX:CreateWindow(config)
         Window.CurrentTheme = themeName
         Theme = Themes[themeName]
         
-        Tween(MainFrame, {BackgroundColor3 = Theme.Background}, 0.4)
-        Tween(GlassEffect, {BackgroundColor3 = Theme.Surface}, 0.4)
-        Tween(Glow, {ImageColor3 = Theme.Glow}, 0.4)
-        Tween(TopBar, {BackgroundColor3 = Theme.SurfaceVariant}, 0.4)
-        Tween(Title, {TextColor3 = Theme.Text}, 0.4)
-        Tween(AccentLine, {BackgroundColor3 = Theme.Primary}, 0.4)
-        Tween(Logo, {BackgroundColor3 = Theme.Primary}, 0.4)
+        Tween(MainFrame, {BackgroundColor3 = Theme.Background}, 0.5)
+        Tween(GlassEffect, {BackgroundColor3 = Theme.Surface}, 0.5)
+        Tween(Glow, {ImageColor3 = Theme.Glow}, 0.5)
+        Tween(TopBar, {BackgroundColor3 = Theme.SurfaceVariant}, 0.5)
+        Tween(Title, {TextColor3 = Theme.Text}, 0.5)
+        Tween(AccentLine, {BackgroundColor3 = Theme.Primary}, 0.5)
+        Tween(Logo, {BackgroundColor3 = Theme.Primary}, 0.5)
+        Tween(ThemeLabel, {Text = "Thème actuel: " .. themeName, TextColor3 = Theme.Primary}, 0.5)
+        
+        AccentGradient.Color = ColorSequence.new({
+            ColorSequenceKeypoint.new(0, Theme.Primary),
+            ColorSequenceKeypoint.new(0.3, Theme.Secondary),
+            ColorSequenceKeypoint.new(0.6, Theme.Tertiary),
+            ColorSequenceKeypoint.new(1, Theme.Accent),
+        })
         
         Window:Notify({
             Title = "Thème Modifié",
-            Content = "Le thème " .. themeName .. " a été appliqué avec succès !",
+            Content = "Le thème " .. themeName .. " a été appliqué !",
             Duration = 2.5,
             Type = "Success"
         })
@@ -541,7 +667,6 @@ function GitanX:CreateWindow(config)
     if not LoadingEnabled then
         Tween(MainFrame, {Size = UDim2.new(0, 650, 0, 500)}, 0.6, Enum.EasingStyle.Back)
     else
-        -- Enhanced Loading Screen
         local LoadingFrame = CreateInstance("Frame", {
             Name = "LoadingFrame",
             Size = UDim2.new(1, 0, 1, 0),
@@ -606,8 +731,8 @@ function GitanX:CreateWindow(config)
         CreateInstance("UIGradient", {
             Color = ColorSequence.new({
                 ColorSequenceKeypoint.new(0, Theme.Primary),
-                ColorSequenceKeypoint.new(0.5, Theme.Accent),
-                ColorSequenceKeypoint.new(1, Theme.Secondary),
+                ColorSequenceKeypoint.new(0.5, Theme.Secondary),
+                ColorSequenceKeypoint.new(1, Theme.Tertiary),
             }),
             Parent = LoadingBar,
         })
@@ -635,12 +760,11 @@ function GitanX:CreateWindow(config)
         local Tab = {}
         Tab.Elements = {}
         
-        -- Enhanced Tab Button
         local TabButton = CreateInstance("TextButton", {
             Name = TabName,
             Size = UDim2.new(1, 0, 0, 45),
             BackgroundColor3 = Theme.Surface,
-            BackgroundTransparency = 0.6,
+            BackgroundTransparency = 0.5,
             BorderSizePixel = 0,
             Text = "",
             Parent = TabsContainer,
@@ -653,8 +777,8 @@ function GitanX:CreateWindow(config)
         
         CreateInstance("UIStroke", {
             Color = Theme.Primary,
-            Transparency = 0.85,
-            Thickness = 1.5,
+            Transparency = 0.8,
+            Thickness = 2,
             ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
             Parent = TabButton,
         })
@@ -663,7 +787,7 @@ function GitanX:CreateWindow(config)
             Size = UDim2.new(0, 32, 0, 32),
             Position = UDim2.new(0, 8, 0, 6.5),
             BackgroundColor3 = Theme.Primary,
-            BackgroundTransparency = 0.85,
+            BackgroundTransparency = 0.8,
             BorderSizePixel = 0,
             Parent = TabButton,
         })
@@ -673,11 +797,20 @@ function GitanX:CreateWindow(config)
             Parent = TabIconBg,
         })
         
+        CreateInstance("UIGradient", {
+            Color = ColorSequence.new({
+                ColorSequenceKeypoint.new(0, Theme.Primary),
+                ColorSequenceKeypoint.new(1, Theme.Secondary),
+            }),
+            Rotation = 45,
+            Parent = TabIconBg,
+        })
+        
         local TabIcon = CreateInstance("TextLabel", {
             Size = UDim2.new(1, 0, 1, 0),
             BackgroundTransparency = 1,
             Text = TabIconText,
-            TextColor3 = Theme.Primary,
+            TextColor3 = Theme.Text,
             TextSize = 18,
             Font = Enum.Font.GothamBold,
             Parent = TabIconBg,
@@ -699,7 +832,7 @@ function GitanX:CreateWindow(config)
             Name = TabName .. "Content",
             Size = UDim2.new(1, 0, 1, 0),
             BackgroundTransparency = 1,
-            ScrollBarThickness = 5,
+            ScrollBarThickness = 6,
             ScrollBarImageColor3 = Theme.Primary,
             BorderSizePixel = 0,
             Visible = false,
@@ -721,30 +854,31 @@ function GitanX:CreateWindow(config)
         })
         
         TabButton.MouseButton1Click:Connect(function()
+            HomePage.Visible = false
             for _, tab in pairs(Window.Tabs) do
                 tab.Content.Visible = false
-                Tween(tab.Button, {BackgroundTransparency = 0.6}, 0.3)
-                Tween(tab.Button.UIStroke, {Transparency = 0.85}, 0.3)
-                Tween(tab.IconBg, {BackgroundTransparency = 0.85}, 0.3)
+                Tween(tab.Button, {BackgroundTransparency = 0.5}, 0.3)
+                Tween(tab.Button.UIStroke, {Transparency = 0.8}, 0.3)
+                Tween(tab.IconBg, {BackgroundTransparency = 0.8}, 0.3)
             end
             TabContent.Visible = true
-            Tween(TabButton, {BackgroundTransparency = 0.2}, 0.3)
-            Tween(TabButton.UIStroke, {Transparency = 0.4}, 0.3)
-            Tween(TabIconBg, {BackgroundTransparency = 0.5}, 0.3)
+            Tween(TabButton, {BackgroundTransparency = 0.15}, 0.3)
+            Tween(TabButton.UIStroke, {Transparency = 0.3}, 0.3)
+            Tween(TabIconBg, {BackgroundTransparency = 0.4}, 0.3)
             Window.CurrentTab = Tab
         end)
         
         TabButton.MouseEnter:Connect(function()
             if Window.CurrentTab ~= Tab then
-                Tween(TabButton, {BackgroundTransparency = 0.4}, 0.2)
-                Tween(TabButton.UIStroke, {Transparency = 0.6}, 0.2)
+                Tween(TabButton, {BackgroundTransparency = 0.3}, 0.2)
+                Tween(TabButton.UIStroke, {Transparency = 0.5}, 0.2)
             end
         end)
         
         TabButton.MouseLeave:Connect(function()
             if Window.CurrentTab ~= Tab then
-                Tween(TabButton, {BackgroundTransparency = 0.6}, 0.2)
-                Tween(TabButton.UIStroke, {Transparency = 0.85}, 0.2)
+                Tween(TabButton, {BackgroundTransparency = 0.5}, 0.2)
+                Tween(TabButton.UIStroke, {Transparency = 0.8}, 0.2)
             end
         end)
         
@@ -753,54 +887,43 @@ function GitanX:CreateWindow(config)
         Tab.IconBg = TabIconBg
         table.insert(Window.Tabs, Tab)
         
-        if #Window.Tabs == 1 then
-            for _, tab in pairs(Window.Tabs) do
-                tab.Content.Visible = false
-                Tween(tab.Button, {BackgroundTransparency = 0.6}, 0.3)
-            end
-            TabContent.Visible = true
-            Tween(TabButton, {BackgroundTransparency = 0.2}, 0.3)
-            Tween(TabButton.UIStroke, {Transparency = 0.4}, 0.3)
-            Tween(TabIconBg, {BackgroundTransparency = 0.5}, 0.3)
-            Window.CurrentTab = Tab
-        end
-        
+        -- Enhanced Button Element
         function Tab:CreateButton(config)
             config = config or {}
             local ButtonName = config.Name or "Button"
             local Callback = config.Callback or function() end
             
             local ButtonFrame = CreateInstance("Frame", {
-                Size = UDim2.new(1, -5, 0, 45),
+                Size = UDim2.new(1, -5, 0, 48),
                 BackgroundColor3 = Theme.Surface,
-                BackgroundTransparency = 0.4,
+                BackgroundTransparency = 0.3,
                 BorderSizePixel = 0,
                 Parent = TabContent,
             })
             
             CreateInstance("UICorner", {
-                CornerRadius = UDim.new(0, 10),
+                CornerRadius = UDim.new(0, 12),
                 Parent = ButtonFrame,
             })
             
             CreateInstance("UIStroke", {
                 Color = Theme.Primary,
-                Transparency = 0.85,
-                Thickness = 1.5,
-                ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
+                Transparency = 0.7,
+                Thickness = 2,
                 Parent = ButtonFrame,
             })
             
             CreateInstance("UIGradient", {
                 Color = ColorSequence.new({
-                    ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),
-                    ColorSequenceKeypoint.new(1, Color3.fromRGB(200, 200, 200)),
+                    ColorSequenceKeypoint.new(0, Theme.Primary),
+                    ColorSequenceKeypoint.new(0.5, Theme.Secondary),
+                    ColorSequenceKeypoint.new(1, Theme.Tertiary),
                 }),
                 Transparency = NumberSequence.new({
-                    NumberSequenceKeypoint.new(0, 0.95),
-                    NumberSequenceKeypoint.new(1, 0.98),
+                    NumberSequenceKeypoint.new(0, 0.92),
+                    NumberSequenceKeypoint.new(1, 0.96),
                 }),
-                Rotation = 90,
+                Rotation = 45,
                 Parent = ButtonFrame,
             })
             
@@ -809,8 +932,8 @@ function GitanX:CreateWindow(config)
                 BackgroundTransparency = 1,
                 Text = ButtonName,
                 TextColor3 = Theme.Text,
-                TextSize = 14,
-                Font = Enum.Font.GothamSemibold,
+                TextSize = 15,
+                Font = Enum.Font.GothamBold,
                 Parent = ButtonFrame,
             })
             
@@ -819,7 +942,7 @@ function GitanX:CreateWindow(config)
                 Position = UDim2.new(0.5, 0, 0.5, 0),
                 AnchorPoint = Vector2.new(0.5, 0.5),
                 BackgroundColor3 = Theme.Primary,
-                BackgroundTransparency = 0.5,
+                BackgroundTransparency = 0.4,
                 BorderSizePixel = 0,
                 Parent = ButtonFrame,
                 ZIndex = 2,
@@ -832,29 +955,29 @@ function GitanX:CreateWindow(config)
             
             Button.MouseButton1Click:Connect(function()
                 ButtonRipple.Size = UDim2.new(0, 0, 0, 0)
-                ButtonRipple.BackgroundTransparency = 0.5
+                ButtonRipple.BackgroundTransparency = 0.4
                 
-                Tween(ButtonRipple, {Size = UDim2.new(2, 0, 2, 0), BackgroundTransparency = 1}, 0.5)
-                Tween(ButtonFrame, {BackgroundColor3 = Theme.Primary}, 0.1)
-                Tween(ButtonFrame.UIStroke, {Transparency = 0.3}, 0.1)
+                Tween(ButtonRipple, {Size = UDim2.new(2.5, 0, 2.5, 0), BackgroundTransparency = 1}, 0.6)
+                Tween(ButtonFrame, {BackgroundTransparency = 0.1}, 0.1)
+                Tween(ButtonFrame.UIStroke, {Transparency = 0.2}, 0.1)
+                Tween(Button, {TextSize = 16}, 0.1)
                 
                 wait(0.1)
-                Tween(ButtonFrame, {BackgroundColor3 = Theme.Surface}, 0.2)
-                Tween(ButtonFrame.UIStroke, {Transparency = 0.85}, 0.2)
+                Tween(ButtonFrame, {BackgroundTransparency = 0.3}, 0.3)
+                Tween(ButtonFrame.UIStroke, {Transparency = 0.7}, 0.3)
+                Tween(Button, {TextSize = 15}, 0.3)
                 
                 Callback()
             end)
             
             Button.MouseEnter:Connect(function()
-                Tween(ButtonFrame, {BackgroundTransparency = 0.2}, 0.2)
-                Tween(ButtonFrame.UIStroke, {Transparency = 0.6}, 0.2)
-                Tween(Button, {TextSize = 15}, 0.2)
+                Tween(ButtonFrame, {BackgroundTransparency = 0.15}, 0.2)
+                Tween(ButtonFrame.UIStroke, {Transparency = 0.4}, 0.2)
             end)
             
             Button.MouseLeave:Connect(function()
-                Tween(ButtonFrame, {BackgroundTransparency = 0.4}, 0.2)
-                Tween(ButtonFrame.UIStroke, {Transparency = 0.85}, 0.2)
-                Tween(Button, {TextSize = 14}, 0.2)
+                Tween(ButtonFrame, {BackgroundTransparency = 0.3}, 0.2)
+                Tween(ButtonFrame.UIStroke, {Transparency = 0.7}, 0.2)
             end)
             
             TabContent.CanvasSize = UDim2.new(0, 0, 0, TabContent.UIListLayout.AbsoluteContentSize.Y + 16)
@@ -862,6 +985,7 @@ function GitanX:CreateWindow(config)
             return Button
         end
         
+        -- Label Element
         function Tab:CreateLabel(text)
             text = text or "Label"
             
@@ -894,6 +1018,7 @@ function GitanX:CreateWindow(config)
             return LabelObject
         end
         
+        -- Enhanced Toggle Element
         function Tab:CreateToggle(config)
             config = config or {}
             local ToggleName = config.Name or "Toggle"
@@ -903,28 +1028,40 @@ function GitanX:CreateWindow(config)
             local ToggleState = Default
             
             local ToggleFrame = CreateInstance("Frame", {
-                Size = UDim2.new(1, -5, 0, 45),
+                Size = UDim2.new(1, -5, 0, 48),
                 BackgroundColor3 = Theme.Surface,
-                BackgroundTransparency = 0.4,
+                BackgroundTransparency = 0.3,
                 BorderSizePixel = 0,
                 Parent = TabContent,
             })
             
             CreateInstance("UICorner", {
-                CornerRadius = UDim.new(0, 10),
+                CornerRadius = UDim.new(0, 12),
                 Parent = ToggleFrame,
             })
             
             CreateInstance("UIStroke", {
                 Color = Default and Theme.Success or Theme.Primary,
-                Transparency = 0.85,
-                Thickness = 1.5,
-                ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
+                Transparency = 0.7,
+                Thickness = 2,
+                Parent = ToggleFrame,
+            })
+            
+            CreateInstance("UIGradient", {
+                Color = ColorSequence.new({
+                    ColorSequenceKeypoint.new(0, Default and Theme.Success or Theme.Primary),
+                    ColorSequenceKeypoint.new(1, Default and Theme.Success or Theme.Secondary),
+                }),
+                Transparency = NumberSequence.new({
+                    NumberSequenceKeypoint.new(0, 0.92),
+                    NumberSequenceKeypoint.new(1, 0.96),
+                }),
+                Rotation = 45,
                 Parent = ToggleFrame,
             })
             
             local ToggleLabel = CreateInstance("TextLabel", {
-                Size = UDim2.new(1, -75, 1, 0),
+                Size = UDim2.new(1, -80, 1, 0),
                 Position = UDim2.new(0, 12, 0, 0),
                 BackgroundTransparency = 1,
                 Text = ToggleName,
@@ -936,8 +1073,8 @@ function GitanX:CreateWindow(config)
             })
             
             local ToggleButton = CreateInstance("TextButton", {
-                Size = UDim2.new(0, 52, 0, 28),
-                Position = UDim2.new(1, -60, 0.5, -14),
+                Size = UDim2.new(0, 56, 0, 30),
+                Position = UDim2.new(1, -64, 0.5, -15),
                 BackgroundColor3 = Default and Theme.Success or Theme.SurfaceVariant,
                 Text = "",
                 BorderSizePixel = 0,
@@ -951,14 +1088,23 @@ function GitanX:CreateWindow(config)
             
             CreateInstance("UIStroke", {
                 Color = Default and Theme.Success or Theme.TextSecondary,
-                Transparency = 0.7,
-                Thickness = 2,
+                Transparency = 0.5,
+                Thickness = 2.5,
+                Parent = ToggleButton,
+            })
+            
+            CreateInstance("UIGradient", {
+                Color = ColorSequence.new({
+                    ColorSequenceKeypoint.new(0, Default and Theme.Success or Theme.SurfaceVariant),
+                    ColorSequenceKeypoint.new(1, Default and Theme.Success or Theme.Surface),
+                }),
+                Rotation = 90,
                 Parent = ToggleButton,
             })
             
             local ToggleCircle = CreateInstance("Frame", {
-                Size = UDim2.new(0, 22, 0, 22),
-                Position = Default and UDim2.new(1, -25, 0.5, -11) or UDim2.new(0, 3, 0.5, -11),
+                Size = UDim2.new(0, 24, 0, 24),
+                Position = Default and UDim2.new(1, -27, 0.5, -12) or UDim2.new(0, 3, 0.5, -12),
                 BackgroundColor3 = Color3.fromRGB(255, 255, 255),
                 BorderSizePixel = 0,
                 Parent = ToggleButton,
@@ -969,13 +1115,22 @@ function GitanX:CreateWindow(config)
                 Parent = ToggleCircle,
             })
             
+            CreateInstance("UIGradient", {
+                Color = ColorSequence.new({
+                    ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),
+                    ColorSequenceKeypoint.new(1, Color3.fromRGB(220, 220, 220)),
+                }),
+                Rotation = 90,
+                Parent = ToggleCircle,
+            })
+            
             local CircleShadow = CreateInstance("ImageLabel", {
-                Size = UDim2.new(1, 10, 1, 10),
-                Position = UDim2.new(0, -5, 0, -5),
+                Size = UDim2.new(1, 12, 1, 12),
+                Position = UDim2.new(0, -6, 0, -6),
                 BackgroundTransparency = 1,
                 Image = "rbxassetid://5028857084",
                 ImageColor3 = Color3.fromRGB(0, 0, 0),
-                ImageTransparency = 0.8,
+                ImageTransparency = 0.7,
                 ScaleType = Enum.ScaleType.Slice,
                 SliceCenter = Rect.new(24, 24, 276, 276),
                 Parent = ToggleCircle,
@@ -988,24 +1143,40 @@ function GitanX:CreateWindow(config)
                 if ToggleState then
                     Tween(ToggleButton, {BackgroundColor3 = Theme.Success}, 0.3)
                     Tween(ToggleButton.UIStroke, {Color = Theme.Success}, 0.3)
-                    Tween(ToggleCircle, {Position = UDim2.new(1, -25, 0.5, -11)}, 0.3, Enum.EasingStyle.Back)
-                    Tween(ToggleFrame.UIStroke, {Color = Theme.Success, Transparency = 0.6}, 0.3)
+                    Tween(ToggleButton.UIGradient, {Color = ColorSequence.new({
+                        ColorSequenceKeypoint.new(0, Theme.Success),
+                        ColorSequenceKeypoint.new(1, Theme.Success),
+                    })}, 0.3)
+                    Tween(ToggleCircle, {Position = UDim2.new(1, -27, 0.5, -12)}, 0.3, Enum.EasingStyle.Back)
+                    Tween(ToggleFrame.UIStroke, {Color = Theme.Success, Transparency = 0.4}, 0.3)
+                    Tween(ToggleFrame.UIGradient, {Color = ColorSequence.new({
+                        ColorSequenceKeypoint.new(0, Theme.Success),
+                        ColorSequenceKeypoint.new(1, Theme.Success),
+                    })}, 0.3)
                 else
                     Tween(ToggleButton, {BackgroundColor3 = Theme.SurfaceVariant}, 0.3)
                     Tween(ToggleButton.UIStroke, {Color = Theme.TextSecondary}, 0.3)
-                    Tween(ToggleCircle, {Position = UDim2.new(0, 3, 0.5, -11)}, 0.3, Enum.EasingStyle.Back)
-                    Tween(ToggleFrame.UIStroke, {Color = Theme.Primary, Transparency = 0.85}, 0.3)
+                    Tween(ToggleButton.UIGradient, {Color = ColorSequence.new({
+                        ColorSequenceKeypoint.new(0, Theme.SurfaceVariant),
+                        ColorSequenceKeypoint.new(1, Theme.Surface),
+                    })}, 0.3)
+                    Tween(ToggleCircle, {Position = UDim2.new(0, 3, 0.5, -12)}, 0.3, Enum.EasingStyle.Back)
+                    Tween(ToggleFrame.UIStroke, {Color = Theme.Primary, Transparency = 0.7}, 0.3)
+                    Tween(ToggleFrame.UIGradient, {Color = ColorSequence.new({
+                        ColorSequenceKeypoint.new(0, Theme.Primary),
+                        ColorSequenceKeypoint.new(1, Theme.Secondary),
+                    })}, 0.3)
                 end
                 
                 Callback(ToggleState)
             end)
             
             ToggleFrame.MouseEnter:Connect(function()
-                Tween(ToggleFrame, {BackgroundTransparency = 0.2}, 0.2)
+                Tween(ToggleFrame, {BackgroundTransparency = 0.15}, 0.2)
             end)
             
             ToggleFrame.MouseLeave:Connect(function()
-                Tween(ToggleFrame, {BackgroundTransparency = 0.4}, 0.2)
+                Tween(ToggleFrame, {BackgroundTransparency = 0.3}, 0.2)
             end)
             
             TabContent.CanvasSize = UDim2.new(0, 0, 0, TabContent.UIListLayout.AbsoluteContentSize.Y + 16)
@@ -1016,13 +1187,13 @@ function GitanX:CreateWindow(config)
                 if ToggleState then
                     Tween(ToggleButton, {BackgroundColor3 = Theme.Success}, 0.3)
                     Tween(ToggleButton.UIStroke, {Color = Theme.Success}, 0.3)
-                    Tween(ToggleCircle, {Position = UDim2.new(1, -25, 0.5, -11)}, 0.3, Enum.EasingStyle.Back)
-                    Tween(ToggleFrame.UIStroke, {Color = Theme.Success, Transparency = 0.6}, 0.3)
+                    Tween(ToggleCircle, {Position = UDim2.new(1, -27, 0.5, -12)}, 0.3, Enum.EasingStyle.Back)
+                    Tween(ToggleFrame.UIStroke, {Color = Theme.Success, Transparency = 0.4}, 0.3)
                 else
                     Tween(ToggleButton, {BackgroundColor3 = Theme.SurfaceVariant}, 0.3)
                     Tween(ToggleButton.UIStroke, {Color = Theme.TextSecondary}, 0.3)
-                    Tween(ToggleCircle, {Position = UDim2.new(0, 3, 0.5, -11)}, 0.3, Enum.EasingStyle.Back)
-                    Tween(ToggleFrame.UIStroke, {Color = Theme.Primary, Transparency = 0.85}, 0.3)
+                    Tween(ToggleCircle, {Position = UDim2.new(0, 3, 0.5, -12)}, 0.3, Enum.EasingStyle.Back)
+                    Tween(ToggleFrame.UIStroke, {Color = Theme.Primary, Transparency = 0.7}, 0.3)
                 end
                 Callback(ToggleState)
             end
@@ -1030,6 +1201,7 @@ function GitanX:CreateWindow(config)
             return ToggleObject
         end
         
+        -- Enhanced Slider Element
         function Tab:CreateSlider(config)
             config = config or {}
             local SliderName = config.Name or "Slider"
@@ -1041,28 +1213,41 @@ function GitanX:CreateWindow(config)
             local SliderValue = Default
             
             local SliderFrame = CreateInstance("Frame", {
-                Size = UDim2.new(1, -5, 0, 55),
+                Size = UDim2.new(1, -5, 0, 60),
                 BackgroundColor3 = Theme.Surface,
-                BackgroundTransparency = 0.4,
+                BackgroundTransparency = 0.3,
                 BorderSizePixel = 0,
                 Parent = TabContent,
             })
             
             CreateInstance("UICorner", {
-                CornerRadius = UDim.new(0, 10),
+                CornerRadius = UDim.new(0, 12),
                 Parent = SliderFrame,
             })
             
             CreateInstance("UIStroke", {
                 Color = Theme.Primary,
-                Transparency = 0.85,
-                Thickness = 1.5,
-                ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
+                Transparency = 0.7,
+                Thickness = 2,
+                Parent = SliderFrame,
+            })
+            
+            CreateInstance("UIGradient", {
+                Color = ColorSequence.new({
+                    ColorSequenceKeypoint.new(0, Theme.Primary),
+                    ColorSequenceKeypoint.new(0.5, Theme.Secondary),
+                    ColorSequenceKeypoint.new(1, Theme.Tertiary),
+                }),
+                Transparency = NumberSequence.new({
+                    NumberSequenceKeypoint.new(0, 0.92),
+                    NumberSequenceKeypoint.new(1, 0.96),
+                }),
+                Rotation = 45,
                 Parent = SliderFrame,
             })
             
             local SliderLabel = CreateInstance("TextLabel", {
-                Size = UDim2.new(1, -70, 0, 22),
+                Size = UDim2.new(1, -70, 0, 24),
                 Position = UDim2.new(0, 12, 0, 8),
                 BackgroundTransparency = 1,
                 Text = SliderName,
@@ -1074,22 +1259,22 @@ function GitanX:CreateWindow(config)
             })
             
             local SliderValueLabel = CreateInstance("TextLabel", {
-                Size = UDim2.new(0, 55, 0, 22),
-                Position = UDim2.new(1, -62, 0, 8),
+                Size = UDim2.new(0, 58, 0, 24),
+                Position = UDim2.new(1, -65, 0, 8),
                 BackgroundTransparency = 1,
                 Text = tostring(Default),
                 TextColor3 = Theme.Primary,
-                TextSize = 15,
+                TextSize = 16,
                 Font = Enum.Font.GothamBold,
                 TextXAlignment = Enum.TextXAlignment.Right,
                 Parent = SliderFrame,
             })
             
             local SliderBackground = CreateInstance("Frame", {
-                Size = UDim2.new(1, -24, 0, 8),
-                Position = UDim2.new(0, 12, 1, -18),
+                Size = UDim2.new(1, -24, 0, 10),
+                Position = UDim2.new(0, 12, 1, -20),
                 BackgroundColor3 = Theme.SurfaceVariant,
-                BackgroundTransparency = 0.3,
+                BackgroundTransparency = 0.2,
                 BorderSizePixel = 0,
                 Parent = SliderFrame,
             })
@@ -1101,8 +1286,8 @@ function GitanX:CreateWindow(config)
             
             CreateInstance("UIStroke", {
                 Color = Theme.Primary,
-                Transparency = 0.9,
-                Thickness = 1,
+                Transparency = 0.85,
+                Thickness = 1.5,
                 Parent = SliderBackground,
             })
             
@@ -1121,14 +1306,15 @@ function GitanX:CreateWindow(config)
             CreateInstance("UIGradient", {
                 Color = ColorSequence.new({
                     ColorSequenceKeypoint.new(0, Theme.Primary),
-                    ColorSequenceKeypoint.new(1, Theme.Secondary),
+                    ColorSequenceKeypoint.new(0.5, Theme.Secondary),
+                    ColorSequenceKeypoint.new(1, Theme.Tertiary),
                 }),
                 Parent = SliderFill,
             })
             
             local SliderButton = CreateInstance("TextButton", {
-                Size = UDim2.new(0, 18, 0, 18),
-                Position = UDim2.new((Default - Min) / (Max - Min), -9, 0.5, -9),
+                Size = UDim2.new(0, 20, 0, 20),
+                Position = UDim2.new((Default - Min) / (Max - Min), -10, 0.5, -10),
                 BackgroundColor3 = Color3.fromRGB(255, 255, 255),
                 BorderSizePixel = 0,
                 Text = "",
@@ -1143,18 +1329,27 @@ function GitanX:CreateWindow(config)
             
             CreateInstance("UIStroke", {
                 Color = Theme.Primary,
-                Transparency = 0.5,
-                Thickness = 2,
+                Transparency = 0.3,
+                Thickness = 3,
+                Parent = SliderButton,
+            })
+            
+            CreateInstance("UIGradient", {
+                Color = ColorSequence.new({
+                    ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),
+                    ColorSequenceKeypoint.new(1, Color3.fromRGB(235, 235, 235)),
+                }),
+                Rotation = 90,
                 Parent = SliderButton,
             })
             
             local ButtonGlow = CreateInstance("ImageLabel", {
-                Size = UDim2.new(1, 12, 1, 12),
-                Position = UDim2.new(0, -6, 0, -6),
+                Size = UDim2.new(1, 16, 1, 16),
+                Position = UDim2.new(0, -8, 0, -8),
                 BackgroundTransparency = 1,
                 Image = "rbxassetid://5028857084",
                 ImageColor3 = Theme.Primary,
-                ImageTransparency = 0.7,
+                ImageTransparency = 0.6,
                 ScaleType = Enum.ScaleType.Slice,
                 SliceCenter = Rect.new(24, 24, 276, 276),
                 Parent = SliderButton,
@@ -1165,15 +1360,17 @@ function GitanX:CreateWindow(config)
             
             SliderButton.MouseButton1Down:Connect(function()
                 dragging = true
-                Tween(SliderButton, {Size = UDim2.new(0, 22, 0, 22)}, 0.2)
-                Tween(ButtonGlow, {ImageTransparency = 0.4}, 0.2)
+                Tween(SliderButton, {Size = UDim2.new(0, 25, 0, 25)}, 0.2)
+                Tween(ButtonGlow, {ImageTransparency = 0.3}, 0.2)
+                Tween(SliderButton.UIStroke, {Thickness = 4}, 0.2)
             end)
             
             UserInputService.InputEnded:Connect(function(input)
                 if input.UserInputType == Enum.UserInputType.MouseButton1 then
                     dragging = false
-                    Tween(SliderButton, {Size = UDim2.new(0, 18, 0, 18)}, 0.2)
-                    Tween(ButtonGlow, {ImageTransparency = 0.7}, 0.2)
+                    Tween(SliderButton, {Size = UDim2.new(0, 20, 0, 20)}, 0.2)
+                    Tween(ButtonGlow, {ImageTransparency = 0.6}, 0.2)
+                    Tween(SliderButton.UIStroke, {Thickness = 3}, 0.2)
                 end
             end)
             
@@ -1188,7 +1385,7 @@ function GitanX:CreateWindow(config)
                     SliderValue = math.clamp(SliderValue, Min, Max)
                     
                     SliderFill.Size = UDim2.new(value, 0, 1, 0)
-                    SliderButton.Position = UDim2.new(value, -9, 0.5, -9)
+                    SliderButton.Position = UDim2.new(value, -10, 0.5, -10)
                     SliderValueLabel.Text = tostring(SliderValue)
                     
                     Callback(SliderValue)
@@ -1196,13 +1393,13 @@ function GitanX:CreateWindow(config)
             end)
             
             SliderFrame.MouseEnter:Connect(function()
-                Tween(SliderFrame, {BackgroundTransparency = 0.2}, 0.2)
-                Tween(SliderFrame.UIStroke, {Transparency = 0.6}, 0.2)
+                Tween(SliderFrame, {BackgroundTransparency = 0.15}, 0.2)
+                Tween(SliderFrame.UIStroke, {Transparency = 0.4}, 0.2)
             end)
             
             SliderFrame.MouseLeave:Connect(function()
-                Tween(SliderFrame, {BackgroundTransparency = 0.4}, 0.2)
-                Tween(SliderFrame.UIStroke, {Transparency = 0.85}, 0.2)
+                Tween(SliderFrame, {BackgroundTransparency = 0.3}, 0.2)
+                Tween(SliderFrame.UIStroke, {Transparency = 0.7}, 0.2)
             end)
             
             TabContent.CanvasSize = UDim2.new(0, 0, 0, TabContent.UIListLayout.AbsoluteContentSize.Y + 16)
@@ -1213,7 +1410,7 @@ function GitanX:CreateWindow(config)
                 SliderValue = value
                 local percent = (value - Min) / (Max - Min)
                 SliderFill.Size = UDim2.new(percent, 0, 1, 0)
-                SliderButton.Position = UDim2.new(percent, -9, 0.5, -9)
+                SliderButton.Position = UDim2.new(percent, -10, 0.5, -10)
                 SliderValueLabel.Text = tostring(value)
                 Callback(value)
             end
@@ -1221,6 +1418,7 @@ function GitanX:CreateWindow(config)
             return SliderObject
         end
         
+        -- Enhanced Dropdown Element
         function Tab:CreateDropdown(config)
             config = config or {}
             local DropdownName = config.Name or "Dropdown"
@@ -1232,28 +1430,41 @@ function GitanX:CreateWindow(config)
             local DropdownOpen = false
             
             local DropdownFrame = CreateInstance("Frame", {
-                Size = UDim2.new(1, -5, 0, 45),
+                Size = UDim2.new(1, -5, 0, 48),
                 BackgroundColor3 = Theme.Surface,
-                BackgroundTransparency = 0.4,
+                BackgroundTransparency = 0.3,
                 BorderSizePixel = 0,
                 Parent = TabContent,
             })
             
             CreateInstance("UICorner", {
-                CornerRadius = UDim.new(0, 10),
+                CornerRadius = UDim.new(0, 12),
                 Parent = DropdownFrame,
             })
             
             CreateInstance("UIStroke", {
                 Color = Theme.Primary,
-                Transparency = 0.85,
-                Thickness = 1.5,
-                ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
+                Transparency = 0.7,
+                Thickness = 2,
+                Parent = DropdownFrame,
+            })
+            
+            CreateInstance("UIGradient", {
+                Color = ColorSequence.new({
+                    ColorSequenceKeypoint.new(0, Theme.Primary),
+                    ColorSequenceKeypoint.new(0.5, Theme.Secondary),
+                    ColorSequenceKeypoint.new(1, Theme.Tertiary),
+                }),
+                Transparency = NumberSequence.new({
+                    NumberSequenceKeypoint.new(0, 0.92),
+                    NumberSequenceKeypoint.new(1, 0.96),
+                }),
+                Rotation = 45,
                 Parent = DropdownFrame,
             })
             
             local DropdownLabel = CreateInstance("TextLabel", {
-                Size = UDim2.new(1, -145, 1, 0),
+                Size = UDim2.new(1, -150, 1, 0),
                 Position = UDim2.new(0, 12, 0, 0),
                 BackgroundTransparency = 1,
                 Text = DropdownName,
@@ -1265,46 +1476,59 @@ function GitanX:CreateWindow(config)
             })
             
             local DropdownButton = CreateInstance("TextButton", {
-                Size = UDim2.new(0, 130, 0, 32),
-                Position = UDim2.new(1, -138, 0, 6.5),
-                BackgroundColor3 = Theme.Primary,
-                BackgroundTransparency = 0.8,
+                Size = UDim2.new(0, 138, 0, 35),
+                Position = UDim2.new(1, -144, 0, 6.5),
+                BackgroundColor3 = Theme.SurfaceVariant,
+                BackgroundTransparency = 0.2,
                 Text = Default,
                 TextColor3 = Theme.Text,
                 TextSize = 13,
-                Font = Enum.Font.Gotham,
+                Font = Enum.Font.GothamSemibold,
                 BorderSizePixel = 0,
                 Parent = DropdownFrame,
             })
             
             CreateInstance("UICorner", {
-                CornerRadius = UDim.new(0, 8),
+                CornerRadius = UDim.new(0, 10),
                 Parent = DropdownButton,
             })
             
             CreateInstance("UIStroke", {
                 Color = Theme.Primary,
-                Transparency = 0.6,
-                Thickness = 1.5,
+                Transparency = 0.5,
+                Thickness = 2,
+                Parent = DropdownButton,
+            })
+            
+            CreateInstance("UIGradient", {
+                Color = ColorSequence.new({
+                    ColorSequenceKeypoint.new(0, Theme.Primary),
+                    ColorSequenceKeypoint.new(1, Theme.Secondary),
+                }),
+                Transparency = NumberSequence.new({
+                    NumberSequenceKeypoint.new(0, 0.88),
+                    NumberSequenceKeypoint.new(1, 0.93),
+                }),
+                Rotation = 45,
                 Parent = DropdownButton,
             })
             
             local DropdownArrow = CreateInstance("TextLabel", {
-                Size = UDim2.new(0, 20, 1, 0),
-                Position = UDim2.new(1, -22, 0, 0),
+                Size = UDim2.new(0, 24, 1, 0),
+                Position = UDim2.new(1, -26, 0, 0),
                 BackgroundTransparency = 1,
                 Text = "▼",
-                TextColor3 = Theme.Text,
-                TextSize = 10,
+                TextColor3 = Theme.Primary,
+                TextSize = 11,
                 Font = Enum.Font.GothamBold,
                 Parent = DropdownButton,
             })
             
             local DropdownContainer = CreateInstance("Frame", {
-                Size = UDim2.new(0, 130, 0, 0),
-                Position = UDim2.new(1, -138, 0, 45),
+                Size = UDim2.new(0, 138, 0, 0),
+                Position = UDim2.new(1, -144, 0, 50),
                 BackgroundColor3 = Theme.SurfaceVariant,
-                BackgroundTransparency = 0.1,
+                BackgroundTransparency = 0.05,
                 BorderSizePixel = 0,
                 ClipsDescendants = true,
                 Visible = false,
@@ -1313,46 +1537,59 @@ function GitanX:CreateWindow(config)
             })
             
             CreateInstance("UICorner", {
-                CornerRadius = UDim.new(0, 8),
+                CornerRadius = UDim.new(0, 10),
                 Parent = DropdownContainer,
             })
             
             CreateInstance("UIStroke", {
                 Color = Theme.Primary,
-                Transparency = 0.7,
-                Thickness = 1.5,
+                Transparency = 0.5,
+                Thickness = 2,
                 Parent = DropdownContainer,
             })
             
             CreateInstance("UIListLayout", {
                 SortOrder = Enum.SortOrder.LayoutOrder,
-                Padding = UDim.new(0, 3),
+                Padding = UDim.new(0, 4),
                 Parent = DropdownContainer,
             })
             
             CreateInstance("UIPadding", {
-                PaddingTop = UDim.new(0, 6),
-                PaddingBottom = UDim.new(0, 6),
-                PaddingLeft = UDim.new(0, 6),
-                PaddingRight = UDim.new(0, 6),
+                PaddingTop = UDim.new(0, 7),
+                PaddingBottom = UDim.new(0, 7),
+                PaddingLeft = UDim.new(0, 7),
+                PaddingRight = UDim.new(0, 7),
                 Parent = DropdownContainer,
             })
             
             for _, option in pairs(Options) do
                 local OptionButton = CreateInstance("TextButton", {
-                    Size = UDim2.new(1, -12, 0, 28),
-                    BackgroundColor3 = Theme.Primary,
-                    BackgroundTransparency = 0.85,
+                    Size = UDim2.new(1, -14, 0, 32),
+                    BackgroundColor3 = Theme.Surface,
+                    BackgroundTransparency = 0.3,
                     Text = option,
                     TextColor3 = Theme.Text,
-                    TextSize = 12,
-                    Font = Enum.Font.Gotham,
+                    TextSize = 13,
+                    Font = Enum.Font.GothamSemibold,
                     BorderSizePixel = 0,
                     Parent = DropdownContainer,
                 })
                 
                 CreateInstance("UICorner", {
-                    CornerRadius = UDim.new(0, 6),
+                    CornerRadius = UDim.new(0, 8),
+                    Parent = OptionButton,
+                })
+                
+                CreateInstance("UIGradient", {
+                    Color = ColorSequence.new({
+                        ColorSequenceKeypoint.new(0, Theme.Primary),
+                        ColorSequenceKeypoint.new(1, Theme.Secondary),
+                    }),
+                    Transparency = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0, 0.9),
+                        NumberSequenceKeypoint.new(1, 0.95),
+                    }),
+                    Rotation = 45,
                     Parent = OptionButton,
                 })
                 
@@ -1362,7 +1599,7 @@ function GitanX:CreateWindow(config)
                     DropdownOpen = false
                     
                     Tween(DropdownArrow, {Rotation = 0}, 0.3)
-                    Tween(DropdownContainer, {Size = UDim2.new(0, 130, 0, 0)}, 0.3)
+                    Tween(DropdownContainer, {Size = UDim2.new(0, 138, 0, 0)}, 0.3)
                     wait(0.3)
                     DropdownContainer.Visible = false
                     
@@ -1370,11 +1607,11 @@ function GitanX:CreateWindow(config)
                 end)
                 
                 OptionButton.MouseEnter:Connect(function()
-                    Tween(OptionButton, {BackgroundTransparency = 0.5}, 0.2)
+                    Tween(OptionButton, {BackgroundTransparency = 0.1}, 0.2)
                 end)
                 
                 OptionButton.MouseLeave:Connect(function()
-                    Tween(OptionButton, {BackgroundTransparency = 0.85}, 0.2)
+                    Tween(OptionButton, {BackgroundTransparency = 0.3}, 0.2)
                 end)
             end
             
@@ -1382,25 +1619,25 @@ function GitanX:CreateWindow(config)
                 DropdownOpen = not DropdownOpen
                 if DropdownOpen then
                     DropdownContainer.Visible = true
-                    local contentSize = DropdownContainer.UIListLayout.AbsoluteContentSize.Y + 12
+                    local contentSize = DropdownContainer.UIListLayout.AbsoluteContentSize.Y + 14
                     Tween(DropdownArrow, {Rotation = 180}, 0.3)
-                    Tween(DropdownContainer, {Size = UDim2.new(0, 130, 0, contentSize)}, 0.3, Enum.EasingStyle.Back)
+                    Tween(DropdownContainer, {Size = UDim2.new(0, 138, 0, math.min(contentSize, 150))}, 0.3, Enum.EasingStyle.Back)
                 else
                     Tween(DropdownArrow, {Rotation = 0}, 0.3)
-                    Tween(DropdownContainer, {Size = UDim2.new(0, 130, 0, 0)}, 0.3)
+                    Tween(DropdownContainer, {Size = UDim2.new(0, 138, 0, 0)}, 0.3)
                     wait(0.3)
                     DropdownContainer.Visible = false
                 end
             end)
             
             DropdownButton.MouseEnter:Connect(function()
-                Tween(DropdownButton, {BackgroundTransparency = 0.6}, 0.2)
-                Tween(DropdownButton.UIStroke, {Transparency = 0.4}, 0.2)
+                Tween(DropdownButton, {BackgroundTransparency = 0.05}, 0.2)
+                Tween(DropdownButton.UIStroke, {Transparency = 0.3}, 0.2)
             end)
             
             DropdownButton.MouseLeave:Connect(function()
-                Tween(DropdownButton, {BackgroundTransparency = 0.8}, 0.2)
-                Tween(DropdownButton.UIStroke, {Transparency = 0.6}, 0.2)
+                Tween(DropdownButton, {BackgroundTransparency = 0.2}, 0.2)
+                Tween(DropdownButton.UIStroke, {Transparency = 0.5}, 0.2)
             end)
             
             TabContent.CanvasSize = UDim2.new(0, 0, 0, TabContent.UIListLayout.AbsoluteContentSize.Y + 16)
@@ -1415,6 +1652,7 @@ function GitanX:CreateWindow(config)
             return DropdownObject
         end
         
+        -- Enhanced Input Element
         function Tab:CreateInput(config)
             config = config or {}
             local InputName = config.Name or "Input"
@@ -1422,23 +1660,36 @@ function GitanX:CreateWindow(config)
             local Callback = config.Callback or function() end
             
             local InputFrame = CreateInstance("Frame", {
-                Size = UDim2.new(1, -5, 0, 45),
+                Size = UDim2.new(1, -5, 0, 48),
                 BackgroundColor3 = Theme.Surface,
-                BackgroundTransparency = 0.4,
+                BackgroundTransparency = 0.3,
                 BorderSizePixel = 0,
                 Parent = TabContent,
             })
             
             CreateInstance("UICorner", {
-                CornerRadius = UDim.new(0, 10),
+                CornerRadius = UDim.new(0, 12),
                 Parent = InputFrame,
             })
             
             CreateInstance("UIStroke", {
                 Color = Theme.Primary,
-                Transparency = 0.85,
-                Thickness = 1.5,
-                ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
+                Transparency = 0.7,
+                Thickness = 2,
+                Parent = InputFrame,
+            })
+            
+            CreateInstance("UIGradient", {
+                Color = ColorSequence.new({
+                    ColorSequenceKeypoint.new(0, Theme.Primary),
+                    ColorSequenceKeypoint.new(0.5, Theme.Secondary),
+                    ColorSequenceKeypoint.new(1, Theme.Tertiary),
+                }),
+                Transparency = NumberSequence.new({
+                    NumberSequenceKeypoint.new(0, 0.92),
+                    NumberSequenceKeypoint.new(1, 0.96),
+                }),
+                Rotation = 45,
                 Parent = InputFrame,
             })
             
@@ -1455,36 +1706,49 @@ function GitanX:CreateWindow(config)
             })
             
             local InputBox = CreateInstance("TextBox", {
-                Size = UDim2.new(0.65, -24, 0, 32),
+                Size = UDim2.new(0.65, -24, 0, 35),
                 Position = UDim2.new(0.35, 0, 0, 6.5),
                 BackgroundColor3 = Theme.SurfaceVariant,
-                BackgroundTransparency = 0.5,
+                BackgroundTransparency = 0.3,
                 PlaceholderText = Placeholder,
                 PlaceholderColor3 = Theme.TextSecondary,
                 Text = "",
                 TextColor3 = Theme.Text,
                 TextSize = 13,
-                Font = Enum.Font.Gotham,
+                Font = Enum.Font.GothamSemibold,
                 BorderSizePixel = 0,
                 ClearTextOnFocus = false,
                 Parent = InputFrame,
             })
             
             CreateInstance("UICorner", {
-                CornerRadius = UDim.new(0, 8),
+                CornerRadius = UDim.new(0, 10),
                 Parent = InputBox,
             })
             
             CreateInstance("UIStroke", {
                 Color = Theme.Primary,
-                Transparency = 0.85,
-                Thickness = 1.5,
+                Transparency = 0.8,
+                Thickness = 2,
+                Parent = InputBox,
+            })
+            
+            CreateInstance("UIGradient", {
+                Color = ColorSequence.new({
+                    ColorSequenceKeypoint.new(0, Theme.Primary),
+                    ColorSequenceKeypoint.new(1, Theme.Secondary),
+                }),
+                Transparency = NumberSequence.new({
+                    NumberSequenceKeypoint.new(0, 0.88),
+                    NumberSequenceKeypoint.new(1, 0.94),
+                }),
+                Rotation = 45,
                 Parent = InputBox,
             })
             
             CreateInstance("UIPadding", {
-                PaddingLeft = UDim.new(0, 10),
-                PaddingRight = UDim.new(0, 10),
+                PaddingLeft = UDim.new(0, 12),
+                PaddingRight = UDim.new(0, 12),
                 Parent = InputBox,
             })
             
@@ -1495,15 +1759,15 @@ function GitanX:CreateWindow(config)
             end)
             
             InputBox.Focused:Connect(function()
-                Tween(InputBox, {BackgroundTransparency = 0.3}, 0.2)
-                Tween(InputBox.UIStroke, {Transparency = 0.5}, 0.2)
-                Tween(InputFrame.UIStroke, {Transparency = 0.6, Color = Theme.Accent}, 0.2)
+                Tween(InputBox, {BackgroundTransparency = 0.1}, 0.2)
+                Tween(InputBox.UIStroke, {Transparency = 0.3}, 0.2)
+                Tween(InputFrame.UIStroke, {Transparency = 0.4, Color = Theme.Accent}, 0.2)
             end)
             
             InputBox.FocusLost:Connect(function()
-                Tween(InputBox, {BackgroundTransparency = 0.5}, 0.2)
-                Tween(InputBox.UIStroke, {Transparency = 0.85}, 0.2)
-                Tween(InputFrame.UIStroke, {Transparency = 0.85, Color = Theme.Primary}, 0.2)
+                Tween(InputBox, {BackgroundTransparency = 0.3}, 0.2)
+                Tween(InputBox.UIStroke, {Transparency = 0.8}, 0.2)
+                Tween(InputFrame.UIStroke, {Transparency = 0.7, Color = Theme.Primary}, 0.2)
             end)
             
             TabContent.CanvasSize = UDim2.new(0, 0, 0, TabContent.UIListLayout.AbsoluteContentSize.Y + 16)
@@ -1514,6 +1778,7 @@ function GitanX:CreateWindow(config)
         return Tab
     end
     
+    -- Enhanced Notification System
     function Window:Notify(config)
         config = config or {}
         local Title = config.Title or "Notification"
@@ -1522,43 +1787,60 @@ function GitanX:CreateWindow(config)
         local Type = config.Type or "Info"
         
         local NotificationColor = Theme.Primary
+        local NotificationIcon = "ℹ"
         if Type == "Success" then
             NotificationColor = Theme.Success
+            NotificationIcon = "✓"
         elseif Type == "Warning" then
             NotificationColor = Theme.Warning
+            NotificationIcon = "⚠"
         elseif Type == "Error" then
             NotificationColor = Theme.Error
+            NotificationIcon = "✕"
         end
         
         local NotificationFrame = CreateInstance("Frame", {
-            Size = UDim2.new(0, 0, 0, 90),
-            Position = UDim2.new(1, -330, 1, -110 - (#Window.Notifications * 100)),
+            Size = UDim2.new(0, 0, 0, 95),
+            Position = UDim2.new(1, -335, 1, -115 - (#Window.Notifications * 105)),
             BackgroundColor3 = Theme.Surface,
-            BackgroundTransparency = 0.2,
+            BackgroundTransparency = 0.15,
             BorderSizePixel = 0,
             Parent = ScreenGui,
             ClipsDescendants = true,
         })
         
         CreateInstance("UICorner", {
-            CornerRadius = UDim.new(0, 12),
+            CornerRadius = UDim.new(0, 14),
             Parent = NotificationFrame,
         })
         
         CreateInstance("UIStroke", {
             Color = NotificationColor,
-            Transparency = 0.6,
-            Thickness = 2,
+            Transparency = 0.4,
+            Thickness = 2.5,
+            Parent = NotificationFrame,
+        })
+        
+        CreateInstance("UIGradient", {
+            Color = ColorSequence.new({
+                ColorSequenceKeypoint.new(0, NotificationColor),
+                ColorSequenceKeypoint.new(1, Theme.Secondary),
+            }),
+            Transparency = NumberSequence.new({
+                NumberSequenceKeypoint.new(0, 0.88),
+                NumberSequenceKeypoint.new(1, 0.94),
+            }),
+            Rotation = 45,
             Parent = NotificationFrame,
         })
         
         local NotificationGlow = CreateInstance("ImageLabel", {
-            Size = UDim2.new(1, 30, 1, 30),
-            Position = UDim2.new(0, -15, 0, -15),
+            Size = UDim2.new(1, 35, 1, 35),
+            Position = UDim2.new(0, -17.5, 0, -17.5),
             BackgroundTransparency = 1,
             Image = "rbxassetid://5028857084",
             ImageColor3 = NotificationColor,
-            ImageTransparency = 0.8,
+            ImageTransparency = 0.75,
             ScaleType = Enum.ScaleType.Slice,
             SliceCenter = Rect.new(24, 24, 276, 276),
             Parent = NotificationFrame,
@@ -1566,7 +1848,7 @@ function GitanX:CreateWindow(config)
         })
         
         local AccentBar = CreateInstance("Frame", {
-            Size = UDim2.new(0, 5, 1, 0),
+            Size = UDim2.new(0, 6, 1, 0),
             BackgroundColor3 = NotificationColor,
             BorderSizePixel = 0,
             Parent = NotificationFrame,
@@ -1582,44 +1864,53 @@ function GitanX:CreateWindow(config)
         })
         
         local IconBg = CreateInstance("Frame", {
-            Size = UDim2.new(0, 38, 0, 38),
-            Position = UDim2.new(0, 15, 0, 12),
+            Size = UDim2.new(0, 42, 0, 42),
+            Position = UDim2.new(0, 16, 0, 14),
             BackgroundColor3 = NotificationColor,
-            BackgroundTransparency = 0.85,
+            BackgroundTransparency = 0.8,
             BorderSizePixel = 0,
             Parent = NotificationFrame,
         })
         
         CreateInstance("UICorner", {
-            CornerRadius = UDim.new(0, 10),
+            CornerRadius = UDim.new(0, 12),
+            Parent = IconBg,
+        })
+        
+        CreateInstance("UIGradient", {
+            Color = ColorSequence.new({
+                ColorSequenceKeypoint.new(0, NotificationColor),
+                ColorSequenceKeypoint.new(1, Theme.Secondary),
+            }),
+            Rotation = 45,
             Parent = IconBg,
         })
         
         local Icon = CreateInstance("TextLabel", {
             Size = UDim2.new(1, 0, 1, 0),
             BackgroundTransparency = 1,
-            Text = Type == "Success" and "✓" or Type == "Warning" and "⚠" or Type == "Error" and "✕" or "ℹ",
-            TextColor3 = NotificationColor,
-            TextSize = 20,
+            Text = NotificationIcon,
+            TextColor3 = Theme.Text,
+            TextSize = 22,
             Font = Enum.Font.GothamBold,
             Parent = IconBg,
         })
         
         local NotificationTitle = CreateInstance("TextLabel", {
-            Size = UDim2.new(1, -100, 0, 28),
-            Position = UDim2.new(0, 63, 0, 12),
+            Size = UDim2.new(1, -110, 0, 30),
+            Position = UDim2.new(0, 68, 0, 14),
             BackgroundTransparency = 1,
             Text = Title,
             TextColor3 = Theme.Text,
-            TextSize = 15,
+            TextSize = 16,
             Font = Enum.Font.GothamBold,
             TextXAlignment = Enum.TextXAlignment.Left,
             Parent = NotificationFrame,
         })
         
         local NotificationContent = CreateInstance("TextLabel", {
-            Size = UDim2.new(1, -100, 0, 42),
-            Position = UDim2.new(0, 63, 0, 40),
+            Size = UDim2.new(1, -110, 0, 45),
+            Position = UDim2.new(0, 68, 0, 44),
             BackgroundTransparency = 1,
             Text = Content,
             TextColor3 = Theme.TextSecondary,
@@ -1631,37 +1922,39 @@ function GitanX:CreateWindow(config)
         })
         
         local CloseBtn = CreateInstance("TextButton", {
-            Size = UDim2.new(0, 24, 0, 24),
-            Position = UDim2.new(1, -34, 0, 12),
+            Size = UDim2.new(0, 26, 0, 26),
+            Position = UDim2.new(1, -36, 0, 14),
             BackgroundTransparency = 1,
             Text = "✕",
             TextColor3 = Theme.TextSecondary,
-            TextSize = 16,
+            TextSize = 17,
             Font = Enum.Font.GothamBold,
             Parent = NotificationFrame,
         })
         
         CreateInstance("UICorner", {
-            CornerRadius = UDim.new(0, 6),
+            CornerRadius = UDim.new(0, 8),
             Parent = CloseBtn,
         })
         
         table.insert(Window.Notifications, NotificationFrame)
         
-        Tween(NotificationFrame, {Size = UDim2.new(0, 320, 0, 90)}, 0.4, Enum.EasingStyle.Back)
+        Tween(NotificationFrame, {Size = UDim2.new(0, 330, 0, 95)}, 0.5, Enum.EasingStyle.Back)
         
         CloseBtn.MouseEnter:Connect(function()
-            Tween(CloseBtn, {BackgroundTransparency = 0.9}, 0.2)
+            Tween(CloseBtn, {BackgroundTransparency = 0.85}, 0.2)
             CloseBtn.BackgroundColor3 = Theme.Error
+            Tween(CloseBtn, {TextColor3 = Color3.fromRGB(255, 255, 255)}, 0.2)
         end)
         
         CloseBtn.MouseLeave:Connect(function()
             Tween(CloseBtn, {BackgroundTransparency = 1}, 0.2)
+            Tween(CloseBtn, {TextColor3 = Theme.TextSecondary}, 0.2)
         end)
         
         CloseBtn.MouseButton1Click:Connect(function()
-            Tween(NotificationFrame, {Size = UDim2.new(0, 0, 0, 90)}, 0.3)
-            wait(0.3)
+            Tween(NotificationFrame, {Size = UDim2.new(0, 0, 0, 95)}, 0.35)
+            wait(0.35)
             NotificationFrame:Destroy()
             for i, notif in pairs(Window.Notifications) do
                 if notif == NotificationFrame then
@@ -1673,13 +1966,15 @@ function GitanX:CreateWindow(config)
         
         spawn(function()
             wait(Duration)
-            Tween(NotificationFrame, {Size = UDim2.new(0, 0, 0, 90)}, 0.3)
-            wait(0.3)
-            NotificationFrame:Destroy()
-            for i, notif in pairs(Window.Notifications) do
-                if notif == NotificationFrame then
-                    table.remove(Window.Notifications, i)
-                    break
+            if NotificationFrame.Parent then
+                Tween(NotificationFrame, {Size = UDim2.new(0, 0, 0, 95)}, 0.35)
+                wait(0.35)
+                NotificationFrame:Destroy()
+                for i, notif in pairs(Window.Notifications) do
+                    if notif == NotificationFrame then
+                        table.remove(Window.Notifications, i)
+                        break
+                    end
                 end
             end
         end)
